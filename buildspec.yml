@@ -1,7 +1,10 @@
 version: 0.2
 env:
     variables:
-        S3_BUCKET: "{s3-angular-bucket-test}"
+        CACHE_CONTROL: "86400"
+        S3_BUCKET: "{{s3-angular-bucket-test}}"
+        BUILD_FOLDER: "dist"
+        BUILD_ENV: "prod"
 phases:
   install:
     runtime-versions:
@@ -9,15 +12,13 @@ phases:
     commands:
         - echo Installing source NPM dependencies...
         - npm install
-        - npm update
         - npm install -g @angular/cli
-        - npm update -g @angular/cli
   build:
     commands:
-        - ng build --prod --aot
+        - ng build --prod
   post_build:
      commands:
-        - aws s3 cp dist s3:${S3_BUCKET} --recursive
+        - aws s3 cp ${BUILD_FOLDER} s3:${S3_BUCKET} --recursive --acl public-read --cache-control "max-age=${CACHE_CONTROL}"
         - echo Build completed on `date`
 artifacts:
     files:
