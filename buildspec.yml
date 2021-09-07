@@ -1,7 +1,7 @@
 version: 0.2
 env:
     variables:
-        S3_BUCKET: "{{s3-angular-bucket-test}}"
+        S3_BUCKET: "{s3-angular-bucket-test}"
 phases:
   install:
     runtime-versions:
