@@ -15,7 +15,7 @@ phases:
         - npm install
   build:
     commands:
-        - ng -v
+        - ng help
         - echo Build started 
         - ng build --${BUILD_ENV}
 artifacts:
