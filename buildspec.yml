@@ -4,6 +4,7 @@ env:
         CACHE_CONTROL: "86400"
         S3_BUCKET: "{{s3-angular-bucket-test}}"
         BUILD_FOLDER: "dist"
+        BUILD_ENV: "prod"
 phases:
   install:
     runtime-versions:
@@ -16,7 +17,7 @@ phases:
     commands:
         - npm test
         - echo Build started 
-        - ng build
+        - ng build --${BUILD_ENV}
 artifacts:
     files:
         - '**/*'
