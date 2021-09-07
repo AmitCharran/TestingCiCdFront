@@ -9,7 +9,9 @@ phases:
     commands:
         - echo Installing source NPM dependencies...
         - npm install
+        - npm update
         - npm install -g @angular/cli
+        - npm update -g @angular/cli
   build:
     commands:
         - ng build --prod --aot
