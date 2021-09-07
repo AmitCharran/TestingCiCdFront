@@ -15,10 +15,9 @@ phases:
   build:
     commands:
         - echo Build started 
-        - cd maad-cars/
         - ng build --prod
 artifacts:
     files:
         - '**/*'
-    base-directory: 'maad-cars/dist*'
+    base-directory: 'dist*'
     discard-paths: yes
